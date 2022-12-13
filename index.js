@@ -1,12 +1,14 @@
 import { homedir } from 'os'
-import { EventEmitter, on } from 'events'
+import { EventEmitter } from 'events'
 import readline from 'readline';
 
 import { toGreeting } from './function/toGreeting.js';
 import { toGoodbye } from './function/toGoodbye.js';
 import { currentDirectory } from './function/currentDirectory.js';
+import { handler } from './function/handler.js';
+import { test } from './function/test.js';
 
-const commands = ['up', 'cd', 'ls', 'cat', 'add', 'rn', 'cp', 'mv', 'rm', 'os', 'hash', 'compress', 'decompress'];
+// npm run start -- --username=your_username
 
 process.chdir(homedir());
 
@@ -15,8 +17,8 @@ currentDirectory();
 
 const emitter = new EventEmitter().setMaxListeners(0);
 
-// emitter
-//   .on('up',function)
+emitter
+  .on('up', test)
 //   .on('cd',function)
 //   .on('ls',function)
 //   .on('cat',function)
@@ -35,8 +37,6 @@ const emitter = new EventEmitter().setMaxListeners(0);
     output: process.stdout,
   });
 
-  rl.on('line', (input) => {
-    console.log(`Received: ${input}`);
-  })
+  rl.on('line', handler.bind(rl, emitter))
     .on('SIGINT', ()=> rl.close())
     .on('close', ()=> toGoodbye())
