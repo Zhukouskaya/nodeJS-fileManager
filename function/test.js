@@ -1,5 +1,5 @@
 function test (str) {
-  console.log(`Test: ${str}\n`)
+  console.log(str.splice(2))
 };
 
 export { test }
