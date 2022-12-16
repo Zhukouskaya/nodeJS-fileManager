@@ -1,7 +1,5 @@
 
 import { readdir } from 'fs/promises';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { currentDirectory } from '../currentDirectory.js';
 
 const ls = async () => {

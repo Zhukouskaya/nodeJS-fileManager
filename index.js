@@ -1,5 +1,5 @@
-import { homedir } from 'os'
 import readline from 'readline';
+import { homedir } from 'os'
 
 import { toGreeting } from './function/toGreeting.js';
 import { toGoodbye } from './function/toGoodbye.js';
