@@ -1,14 +1,12 @@
-import { rm } from 'fs/promises'
-
 import { currentDirectory } from '../currentDirectory.js';
 
-const rem = async (path) => {
+const cd = async (pathToDirectory) => {
     try {
-      await rm(path);
+      process.chdir(pathToDirectory)
       currentDirectory();
     } catch (err) {
       console.error ('Operation failed')
     }
 };
 
-export { rem }
+export { cd }
