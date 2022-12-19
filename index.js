@@ -6,8 +6,6 @@ import { toGoodbye } from './function/toGoodbye.js';
 import { currentDirectory } from './function/currentDirectory.js';
 import { handler } from './function/handler.js';
 
-// npm run start -- --username=your_username
-
 process.chdir(homedir());
 
 toGreeting();
