@@ -35,9 +35,9 @@ function handler (rl, command) {
       }
     } else if (operation.length === 3 && commandsWithThreeArgs.filter(word => word === operation[0]).toString() === operation[0]) {
       // console.log(`command: ${operation[0]}, args: ${[operation[1], operation[2]]}`)
-      let args = operation[1].toString();
       switch (operation[0].toString()) {
-        case 'mv': mv(args); break
+        case 'mv': mv(operation[1], operation[2]); break
+        case 'rn': rn(operation[1], operation[2]); break
       }
     }
     else {
