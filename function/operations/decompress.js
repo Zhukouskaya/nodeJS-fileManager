@@ -1,25 +1,30 @@
 
 import path, { resolve } from "path";
-
 import { createReadStream, createWriteStream } from "fs";
-import { createBrotliCompress } from "zlib";
+import { createBrotliDecompress } from "zlib";
 
 import { currentDirectory } from '../currentDirectory.js';
 
-const compress = async (pathToFile, pathToDestination) => {
+const decompress = async (pathToFile, pathToDestination) => {
   try {
     const filePath = resolve(pathToFile);
     const extname = path.extname(filePath);
     const baseName = path.basename(filePath, extname);
-    
-    const destinationPath = resolve(pathToDestination, `${baseName}.br`);
-    const read = createReadStream(path.basename(filePath));
+
+    if (extname !== '.br') {
+      throw new Error("Invalid file extension");
+    }
+
+    const destinationPath = resolve(pathToDestination, baseName);
+    const read = createReadStream(filePath);
     const write = createWriteStream(destinationPath);
 
-    read.pipe(createBrotliCompress()).pipe(write)
+    read.pipe(createBrotliDecompress()).pipe(write)
     currentDirectory();
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     console.log("Operation failed");
   }
 };
-export { compress }
+
+export { decompress }

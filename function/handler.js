@@ -10,6 +10,7 @@ import { cat } from './operations/cat.js';
 import { rem } from './operations/rm.js'; 
 import { hash } from './operations/hash.js'
 import { compress } from './operations/compress.js';
+import { decompress } from './operations/decompress.js';
 
 const commandsWithoutArgs = ['up', 'ls', '.exit']; 
 const commandsWithTwoArgs = ['cd', 'cat', 'add','rm', 'os', 'hash']; 
@@ -41,6 +42,7 @@ function handler (rl, command) {
         case 'rn': rn(operation[1], operation[2]); break
         case 'cp': cp(operation[1], operation[2]); break
         case 'compress': compress(operation[1], operation[2]); break
+        case 'decompress': decompress(operation[1], operation[2]); break
       }
     }
     else {
