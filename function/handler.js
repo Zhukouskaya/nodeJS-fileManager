@@ -4,11 +4,11 @@ import { mv } from './operations/mv.js';
 import { cd } from './operations/cd.js';
 import { rn } from './operations/rn.js';
 import { add } from './operations/add.js';
+import { cat } from './operations/cat.js';
 import { rem } from './operations/rm.js'; 
 import { hash } from './operations/hash.js'
 
-const commandCheek = ["cat","cp","os","compress","decompress"]
-
+const commandCheek = ["cp","os","compress","decompress"]
 
 const commandsWithoutArgs = ['up', 'ls', '.exit']; 
 const commandsWithTwoArgs = ['cd', 'cat', 'add', 'cp', 'rm', 'os', 'hash', 'compress', 'decompress']; 
@@ -32,6 +32,7 @@ function handler (rl, command) {
         case 'rm': rem(args); break
         case 'cd': cd(args); break
         case 'add': add(args); break
+        case 'cat': cat(args); break
         case 'hash': hash(args); break
       }
     } else if (operation.length === 3 && commandsWithThreeArgs.filter(word => word === operation[0]).toString() === operation[0]) {

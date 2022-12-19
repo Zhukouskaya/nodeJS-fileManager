@@ -7,15 +7,15 @@ import { currentDirectory } from '../currentDirectory.js';
 
 const mv = async (pathToFile, pathToNewDirectory) => {
   try {
-    const path = resolve(pathToFile);
-    const { base } = parse(path);
+    const file = resolve(pathToFile);
+    const { base } = parse(file);
 
     const newDirectoryPath = resolve(pathToNewDirectory, base);
-    const read = createReadStream(path);
+    const read = createReadStream(file);
     const write = createWriteStream(newDirectoryPath);
 
     await pipeline(read, write);
-    await rm(filePath);
+    await rm(file);
 
     currentDirectory();
   } catch (err) {
