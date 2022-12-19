@@ -9,17 +9,15 @@ import { add } from './operations/add.js';
 import { cat } from './operations/cat.js';
 import { rem } from './operations/rm.js'; 
 import { hash } from './operations/hash.js'
-
-const commandCheek = ["compress","decompress"]
+import { compress } from './operations/compress.js';
 
 const commandsWithoutArgs = ['up', 'ls', '.exit']; 
-const commandsWithTwoArgs = ['cd', 'cat', 'add','rm', 'os', 'hash', 'compress', 'decompress']; 
-const commandsWithThreeArgs = ['mv', 'rn', 'cp']; 
+const commandsWithTwoArgs = ['cd', 'cat', 'add','rm', 'os', 'hash']; 
+const commandsWithThreeArgs = ['mv', 'rn', 'cp', 'compress', 'decompress']; 
 
 function handler (rl, command) {
   command = command.trim();
   let operation = command.split(' ');
-  // console.log('handler:', operation)
   try {
     if (operation.length === 1 && commandsWithoutArgs.filter(word => word === command).toString() === command) {
       switch(command.toString()) {
@@ -42,6 +40,7 @@ function handler (rl, command) {
         case 'mv': mv(operation[1], operation[2]); break
         case 'rn': rn(operation[1], operation[2]); break
         case 'cp': cp(operation[1], operation[2]); break
+        case 'compress': compress(operation[1], operation[2]); break
       }
     }
     else {

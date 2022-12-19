@@ -29,14 +29,10 @@ const os = async (arg) => {
       case "--architecture":
         console.log(process.arch);
         break;
-
-      default:
-        throw new Error("Invalid input");
     }
-
     currentDirectory();
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log("Operation failed");
   }
 };
 
