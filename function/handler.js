@@ -3,16 +3,18 @@ import { up } from './operations/up.js';
 import { mv } from './operations/mv.js'; 
 import { cd } from './operations/cd.js';
 import { rn } from './operations/rn.js';
+import { cp } from './operations/cp.js';
 import { add } from './operations/add.js';
 import { cat } from './operations/cat.js';
 import { rem } from './operations/rm.js'; 
 import { hash } from './operations/hash.js'
 
-const commandCheek = ["cp","os","compress","decompress"]
+
+const commandCheek = ["os","compress","decompress"]
 
 const commandsWithoutArgs = ['up', 'ls', '.exit']; 
-const commandsWithTwoArgs = ['cd', 'cat', 'add', 'cp', 'rm', 'os', 'hash', 'compress', 'decompress']; 
-const commandsWithThreeArgs = ['mv', 'rn']; 
+const commandsWithTwoArgs = ['cd', 'cat', 'add','rm', 'os', 'hash', 'compress', 'decompress']; 
+const commandsWithThreeArgs = ['mv', 'rn', 'cp']; 
 
 function handler (rl, command) {
   command = command.trim();
@@ -40,6 +42,7 @@ function handler (rl, command) {
       switch (operation[0].toString()) {
         case 'mv': mv(operation[1], operation[2]); break
         case 'rn': rn(operation[1], operation[2]); break
+        case 'cp': cp(operation[1], operation[2]); break
       }
     }
     else {
