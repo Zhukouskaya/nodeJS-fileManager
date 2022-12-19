@@ -1,14 +1,17 @@
 import { rename } from 'fs/promises'
+import { resolve, parse } from "path";
 
 import { currentDirectory } from '../currentDirectory.js';
 
-const rn = async (pathToFile, newFilename) => {
+const rn = async (pathToFile, newFileName) => {
     try {
-      const path = resolve(pathToFile);
-      await rm(path);
-      currentDirectory();
-    } catch (err) {
-      console.error ('Operation failed')
+      const file = resolve(pathToFile);
+      const { dir } = parse(file);
+      const pathFromFile = resolve(dir, newFileName);
+      await rename(file, pathFromFile);
+      currentDirectory()
+      } catch (err) {
+        console.log("Operation failed");
     }
 };
 

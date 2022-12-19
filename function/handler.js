@@ -2,16 +2,17 @@ import { ls } from './operations/ls.js'
 import { up } from './operations/up.js';
 import { mv } from './operations/mv.js'; 
 import { cd } from './operations/cd.js';
+import { rn } from './operations/rn.js';
 import { add } from './operations/add.js';
 import { rem } from './operations/rm.js'; 
 import { hash } from './operations/hash.js'
 
-const commandCheek = ["cat","rn","cp","os","compress","decompress"]
+const commandCheek = ["cat","cp","os","compress","decompress"]
 
 
 const commandsWithoutArgs = ['up', 'ls', '.exit']; 
-const commandsWithTwoArgs = ['cd', 'cat', 'add', 'rn', 'cp', 'rm', 'os', 'hash', 'compress', 'decompress']; 
-const commandsWithThreeArgs = ['mv']; 
+const commandsWithTwoArgs = ['cd', 'cat', 'add', 'cp', 'rm', 'os', 'hash', 'compress', 'decompress']; 
+const commandsWithThreeArgs = ['mv', 'rn']; 
 
 function handler (rl, command) {
   command = command.trim();
