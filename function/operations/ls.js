@@ -1,5 +1,4 @@
 import { readdir } from "fs/promises";
-import { resolve } from "path";
 
 import { currentDirectory } from '../currentDirectory.js';
 
@@ -24,8 +23,7 @@ const ls = async () => {
     );
 
     console.table([..._result.dir, ..._result.files]);
-    return done();
-    currentDirectory();
+    return currentDirectory();
   } catch (error) {
     console.log("Operation failed");
   }
