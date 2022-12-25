@@ -5,14 +5,26 @@ import { currentDirectory } from '../currentDirectory.js';
 
 const ls = async () => {
   try {
-    const curDirectory = resolve(process.cwd());
-    const files = (await readdir(curDirectory, { withFileTypes: true })).map((el) => {
-      return {
-        Name: el.name,
-        Type: el.isDirectory() ? "directory" : "file",
-      };
-    });
-    console.table(files)
+    const _path = process.cwd();
+    const _result = (await readdir(_path, { withFileTypes: true })).reduce(
+      (acc, item) => {
+        const _isDirectory = item.isDirectory();
+        const _item = {
+          Name: item.name,
+          Type: _isDirectory ? 'directory' : 'file',
+        };
+        return {
+          ...acc,
+          ...(_isDirectory
+            ? { dir: [...acc.dir, _item] }
+            : { files: [...acc.files, _item] }),
+        };
+      },
+      { dir: [], files: [] }
+    );
+
+    console.table([..._result.dir, ..._result.files]);
+    return done();
     currentDirectory();
   } catch (error) {
     console.log("Operation failed");
